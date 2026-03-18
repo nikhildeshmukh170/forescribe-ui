@@ -163,10 +163,10 @@ root config files
 - Add form validation states in `LoginModal` (implemented with `react-hook-form`)
 - Add automated tests (Jest + React Testing Library + Playwright)
 - Add e2e flows for `signin`, `home`, and 404
-- Optimize images via `next/image` and dynamic import of sign-in page for client-only behavior (
+- Optimize images via `next/image` and dynamic import of sign-in page for client-only behavior
 
 ## 📌 Notes
 
 - The project intentionally prevents hydration mismatch by avoiding random values in SSR and using React-safe SVG props
-- UI and motion are tuned for a polished, non-AI generic appearance with gradients and card grid depth
+
 
