@@ -6,12 +6,14 @@ A modern, animated SaaS-style frontend built with Next.js, featuring smooth rout
 
 ## 🚀 Tech Stack
 
-- Next.js 14 (App Router)
-- React 18
+- Next.js 16.1.7 (App Router)
+- React 19.2.3
+- React DOM 19.2.3
 - TypeScript
-- TailwindCSS
-- Framer Motion
-- React Hook Form
+- TailwindCSS 4.2.1
+- Framer Motion 12.38.0
+- React Hook Form 7.71.2
+- Zod 4.3.6
 
 ---
 
