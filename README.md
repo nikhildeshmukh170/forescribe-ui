@@ -54,6 +54,8 @@ A modern, animated SaaS-style frontend built with Next.js, featuring smooth rout
 ### Install
 
 ```bash
+npm install
+# or
 pnpm install
 # or
 yarn
@@ -75,7 +77,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 npm run build
-npm run start
+npm run dev
 ```
 
 or
