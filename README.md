@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Forescribe UI (Next.js)
 
-## Getting Started
+A modern, animated SaaS-style frontend built with Next.js, featuring smooth route transitions, interactive UI components, and a polished authentication experience.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- TailwindCSS
+- Framer Motion
+- React Hook Form
+
+---
+
+## ✨ Features
+
+### 🔹 Core Features
+- App Router architecture (`app/`)
+- Home page (`/`) with onboarding logic
+- Sign-in page (`/signin`) with modal-based UI
+- Custom 404 page with animation
+
+### 🎨 UI & UX
+- Smooth route transitions (Framer Motion)
+- Scroll reveal animations
+- Glassmorphism-based card UI
+- Interactive login flow (Google, Microsoft, Email)
+- Fully responsive layout
+
+### ⚡ Performance & Architecture
+- Server/Client component separation
+- Optimized fonts using `next/font`
+- Reusable UI components (`Button`, `Card`)
+- Clean folder structure for scalability
+
+### ♿ Accessibility
+- Semantic HTML structure
+- ARIA labels and roles
+- Screen-reader friendly elements
+
+---
+
+## 🛠️ Project Setup
+
+### Requirements
+- Node.js v18+
+- npm / pnpm / yarn
+
+### Install
+
+```bash
+pnpm install
+# or
+yarn
+```
+
+### Run development server
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
 # or
-bun dev
+yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build / production preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+or
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm build
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧩 Features completed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- App router architecture (`app/`)
+- Home page (`/`) with sign-in call-to-action
+- Sign-in page (`/signin`) with full background + modal
+- 404 custom page (`app/not-found.tsx`) with motion
+- Route transitions and reveal animations (framer-motion)
+- Accessibility improvements (semantic roles, ARIA labels, hidden `sr-only` heading)
+- SVG DOM property compatibility (React attribute names in `data/cardData.tsx`)
+- Dynamic page metadata:
+  - `/`: `Forescribe AI`
+  - `/signin`: `Sign In | Forescribe AI`
+- Button component supports both click and link usage
 
-## Deploy on Vercel
+## 🛠️ Development details and assumptions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Uses Next.js 14+ App Router (server components by default, client components where needed)
+- `LoginModal` is client-side with simulated authentication action (setTimeout push to `/`)
+- `SignInPage` and Home call same shared UI; home now minimal promotion + sign-in link
+- `cardData.tsx` includes inline SVG icons used by `CardGrid`
+- `next/font` is used for Geist fonts via `layout.tsx`
+- `app/layout.tsx` wraps children in `RouteTransition` for hydration
+- `not-found` route uses accessible 404 experience and motion animations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Directory structure (developer view)
+
+This section describes where key app code lives and what each folder is for.
+
+- `app/`
+  - `layout.tsx`: app shell, global CSS and font setup
+  - `page.tsx`: home route UI and first-visit behavior
+  - `signin/page.tsx`: signin route rendering `SignInPage`
+  - `not-found.tsx`: custom 404 page
+  - `HomeClient.tsx`: client-side first-visit redirect logic + home content
+
+- `components/`
+  - `animations/`
+    - `RouteTransition.tsx`: page transition container
+    - `RevealOnScroll.tsx`: animation wrapper for content reveal
+  - `layout/`
+    - `CardGrid.tsx`: renders card list from `cardData`
+    - `Column.tsx`: responsive layout helper
+  - `sections/`
+    - `LoginModal.tsx`: signin modal with fake auth flow
+    - `SignInPage.tsx`: signin page that includes `LoginModal` and background graphics
+  - `ui/`
+    - `Button.tsx`: reusable button with link/click modes
+    - `Card.tsx`: card UI used by `CardGrid` (hover + icon + labels)
+
+- `data/`
+  - `cardData.tsx`: array of card entries (title, subtitle, icon, color)
+
+- `public/`
+  - `logo.gif`: animated brand logo (marked `unoptimized` in `Image` component)
+  - other static assets
+
+root config files
+- `README.md`
+- `package.json`
+- `next.config.ts`
+- `tsconfig.json`
+
+## 🧪 How to verify the behavior
+
+1. Start dev server
+2. Go to `/` (single button, front door)
+3. Click sign-in button (`/signin` with full modal scene)
+4. Navigate to unknown route (`/not-real`) to confirm 404
+5. Open browser console and verify no "Invalid DOM property" warnings, or disable extensions like Grammarly if still seen
+
+## 💡 Future improvements
+
+- Add full auth flow with OAuth, server-side session and secure cookie support
+- Add form validation states in `LoginModal` (implemented with `react-hook-form`)
+- Add automated tests (Jest + React Testing Library + Playwright)
+- Add e2e flows for `signin`, `home`, and 404
+- Optimize images via `next/image` and dynamic import of sign-in page for client-only behavior (
+
+## 📌 Notes
+
+- The project intentionally prevents hydration mismatch by avoiding random values in SSR and using React-safe SVG props
+- UI and motion are tuned for a polished, non-AI generic appearance with gradients and card grid depth
+
